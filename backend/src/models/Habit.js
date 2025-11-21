@@ -10,6 +10,10 @@ const habitSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+    default: "",
+  },
   currentStreak: {
     type: Number,
     default: 0,
@@ -28,23 +32,23 @@ const habitSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    default: () => new Date(),
   },
   updatedAt: {
     type: Date,
-    default: Date.now,
+    default: () => new Date(),
   },
 });
 
 habitSchema.index({ userId: 1, name: 1 }, { unique: true });
 
 habitSchema.pre("save", function (next) {
-  this.updatedAt = Date.now();
+  this.updatedAt = new Date();
   next();
 });
 
 habitSchema.pre("findOneAndUpdate", function (next) {
-  this._update.updatedAt = Date.now();
+  this._update.updatedAt = new Date();
   next();
 });
 
