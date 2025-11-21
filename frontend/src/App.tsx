@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage.js";
 import SignupPage from "./pages/SignupPage.js";
 import Dashboard from "./pages/Dashboard.js";
 import ProtectedRoute from "./components/ProtectedRoute.js";
+import './style/global.css'
 
 function App() {
   return (
