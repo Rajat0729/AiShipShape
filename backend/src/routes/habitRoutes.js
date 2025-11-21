@@ -6,9 +6,12 @@ import {
     updateHabit,
     recordHabitCompletion,
     deleteHabit
-} from "../controllers/authController.js";
+} from "../controllers/habitController.js";
+import { auth } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
+
+router.use(auth);
 
 router.post("/", createHabit);
 router.get("/", getHabits);

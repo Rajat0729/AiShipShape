@@ -23,7 +23,7 @@ const habitSchema = new mongoose.Schema({
     default: 0,
   },
   lastCompleted: {
-    type: Date,
+    type: Date | null,
     default: null,
   },
   datesCompleted: {

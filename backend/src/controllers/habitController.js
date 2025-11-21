@@ -10,7 +10,7 @@ export const createHabit = async (req, res) => {
   }
 
   const newHabit = await Habit.create({ name, description, userId: req.user.id });
-  res.status(201).json({ habit: newHabit });
+  res.status(201).json({ habit: newHabit._id });
 };
 
 // Get all habits
