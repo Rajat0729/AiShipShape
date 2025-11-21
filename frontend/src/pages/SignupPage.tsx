@@ -1,10 +1,10 @@
-// SignupPage.tsx
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { API_BASE_URL } from "../services/api.js";
 
 export default function SignupPage() {
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -31,15 +31,14 @@ export default function SignupPage() {
       });
 
       const data = await res.json();
+
       if (!res.ok) {
-        setError(data.message || data.error || "Registration failed");
+        setError(data.message || "Registration failed");
       } else {
-        // success
-        setSuccess("Registration successful. You can now log in.");
-        // optionally redirect to login after a delay
+        setSuccess("Account created successfully!");
         setTimeout(() => navigate("/login"), 1200);
       }
-    } catch (err) {
+    } catch {
       setError("Network error. Try again.");
     } finally {
       setLoading(false);
@@ -70,6 +69,16 @@ export default function SignupPage() {
             onChange={(e) => setEmail(e.target.value)}
             required
             autoComplete="email"
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginTop: "6px",
+              marginBottom: "12px",
+              borderRadius: "8px",
+              border: "1px solid #333",
+              backgroundColor: "#0f1115",
+              color: "white",
+            }}
           />
 
           <label className="text-sm block mt-2">Password</label>
@@ -80,6 +89,16 @@ export default function SignupPage() {
             onChange={(e) => setPassword(e.target.value)}
             required
             autoComplete="new-password"
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginTop: "6px",
+              marginBottom: "12px",
+              borderRadius: "8px",
+              border: "1px solid #333",
+              backgroundColor: "#0f1115",
+              color: "white",
+            }}
           />
 
           <label className="text-sm block mt-2">Confirm Password</label>
@@ -90,10 +109,26 @@ export default function SignupPage() {
             onChange={(e) => setConfirm(e.target.value)}
             required
             autoComplete="new-password"
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginTop: "6px",
+              marginBottom: "12px",
+              borderRadius: "8px",
+              border: "1px solid #333",
+              backgroundColor: "#0f1115",
+              color: "white",
+            }}
           />
 
-          {error && <div style={{ color: "salmon", marginBottom: 8 }}>{error}</div>}
-          {success && <div style={{ color: "lightgreen", marginBottom: 8 }}>{success}</div>}
+          {error && (
+            <div style={{ color: "salmon", marginBottom: "10px" }}>{error}</div>
+          )}
+          {success && (
+            <div style={{ color: "lightgreen", marginBottom: "10px" }}>
+              {success}
+            </div>
+          )}
 
           <button type="submit" className="w-full bg-(--accent) py-3 rounded-md mt-5 text-base font-semibold hover:bg-[#18a84c]" disabled={loading}>
             {loading ? "Creating..." : "Create account"}

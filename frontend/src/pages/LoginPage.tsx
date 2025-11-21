@@ -1,4 +1,3 @@
-// src/pages/LoginPage.tsx
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { API_BASE_URL } from "../services/api.js";
@@ -6,6 +5,7 @@ import { saveToken } from "../utils/auth.js";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -26,19 +26,18 @@ export default function LoginPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.message || data.error || "Login failed");
+        setError(data.message || "Invalid credentials");
         setLoading(false);
         return;
       }
 
-      // Expecting { token: "..." }
       if (data.token) {
         saveToken(data.token);
         navigate("/dashboard");
       } else {
-        setError("Login succeeded but no token returned from server.");
+        setError("No token returned by server.");
       }
-    } catch (err) {
+    } catch {
       setError("Network error. Try again.");
     } finally {
       setLoading(false);
@@ -46,60 +45,143 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex h-screen w-full bg-(--bg)">
+    <div
+      style={{
+        display: "flex",
+        height: "100vh",
+        width: "100%",
+        backgroundColor: "#0d1117",
+        color: "white",
+      }}
+    >
+      {/* LEFT SIDE */}
+      <div
+        style={{
+          width: "50%",
+          padding: "60px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          src="/graphimage.png"
+          alt="Graph"
+          style={{
+            width: "350px",
+            marginBottom: "40px",
+            opacity: 0.9,
+          }}
+        />
 
-      {/* LEFT PANEL */}
-      <div className="w-1/2 p-16 flex flex-col justify-center">
-        <img src="/graphimage.png" alt="Graph" className="w-[320px] mb-8 opacity-90" />
+        <h1 style={{ fontSize: "42px", fontWeight: 600 }}>HabitFlow:</h1>
 
-        <h1 className="text-[42px] font-semibold">HabitFlow:</h1>
-        <h1 className="text-[36px] font-bold mt-2">
-          Master your days,
-          <br /> visualize your success.
+        <h1 style={{ fontSize: "36px", fontWeight: 700, marginTop: "10px" }}>
+          Master your days, <br /> visualize your success.
         </h1>
 
-        <p className="mt-5 text-[#aaaaaa] text-sm">
+        <p style={{ marginTop: "20px", color: "#aaa", fontSize: "15px" }}>
           A professional habit tracker built for consistency.
         </p>
       </div>
 
-      {/* RIGHT PANEL */}
-      <div className="w-1/2 flex justify-center items-center">
-        <form className="bg-[#1c1f25] p-9 w-[350px] rounded-xl shadow-[0_2px_15px_rgba(0,0,0,0.4)]" onSubmit={handleSubmit}>
-          <h2 className="text-[24px] mb-5">Sign In</h2>
+      {/* RIGHT SIDE */}
+      <div
+        style={{
+          width: "50%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            backgroundColor: "#1c1f25",
+            padding: "30px",
+            width: "350px",
+            borderRadius: "12px",
+            boxShadow: "0px 4px 18px rgba(0,0,0,0.45)",
+          }}
+        >
+          <h2 style={{ fontSize: "24px", marginBottom: "20px" }}>Sign In</h2>
 
-          <label className="text-sm block mt-2">Email Address</label>
+          <label style={{ fontSize: "14px" }}>Email Address</label>
           <input
             type="email"
-            className="w-full p-2.5 mt-1 rounded-md border border-[#333] bg-[#0f1115] text-white"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             autoComplete="email"
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginTop: "6px",
+              marginBottom: "12px",
+              borderRadius: "8px",
+              border: "1px solid #333",
+              backgroundColor: "#0f1115",
+              color: "white",
+            }}
           />
 
-          <label className="text-sm block mt-2">Password</label>
+          <label style={{ fontSize: "14px" }}>Password</label>
           <input
             type="password"
-            className="w-full p-2.5 mt-1 rounded-md border border-[#333] bg-[#0f1115] text-white"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             autoComplete="current-password"
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginTop: "6px",
+              marginBottom: "12px",
+              borderRadius: "8px",
+              border: "1px solid #333",
+              backgroundColor: "#0f1115",
+              color: "white",
+            }}
           />
 
-          <div className="flex justify-end">
-            <a className="mt-2 text-[13px] text-[#6db2ff] no-underline" href="#">Forgot password?</a>
+          <div style={{ display: "flex", justifyContent: "end" }}>
+            <a
+              href="#"
+              style={{
+                fontSize: "13px",
+                marginBottom: "10px",
+                color: "#82b6ff",
+                textDecoration: "none",
+              }}
+            >
+              Forgot password?
+            </a>
           </div>
 
-          {error && <div style={{ color: "salmon", marginBottom: 8 }}>{error}</div>}
+          {error && (
+            <div style={{ color: "salmon", marginBottom: "10px" }}>{error}</div>
+          )}
 
-          <button type="submit" className="w-full bg-(--accent) py-3 rounded-md mt-5 text-base font-semibold hover:bg-[#18a84c]" disabled={loading}>
+          <button
+            type="submit"
+            className="w-full bg-(--accent) py-3 rounded-md mt-5 text-base font-semibold hover:bg-[#18a84c]"
+            disabled={loading}
+          >
             {loading ? "Signing in..." : "Sign In"}
           </button>
 
-          <p className="text-center mt-5 text-[#cccccc]">
-            Don't have an account? <Link className="text-(--accent) no-underline" to="/signup">Register</Link>
+          <p
+            style={{
+              textAlign: "center",
+              marginTop: "20px",
+              color: "#ccc",
+              fontSize: "14px",
+            }}
+          >
+            Don't have an account?{" "}
+            <Link to="/signup" style={{ color: "#2ecc71", textDecoration: "none" }}>
+              Register
+            </Link>
           </p>
         </form>
       </div>

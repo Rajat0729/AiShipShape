@@ -23,7 +23,7 @@ const habitSchema = new mongoose.Schema({
     default: 0,
   },
   lastCompleted: {
-    type: Date | null,
+    type: Date,
     default: null,
   },
   datesCompleted: {
@@ -32,11 +32,11 @@ const habitSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: () => new Date(),
+    default: Date.now,
   },
   updatedAt: {
     type: Date,
-    default: () => new Date(),
+    default: Date.now,
   },
 });
 

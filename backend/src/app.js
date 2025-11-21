@@ -18,8 +18,8 @@ app.get("/", (_, res) => {
 });
 
 // Routers
-app.use("/api/auth", authRouter);
-app.use("/api/habits", habitRouter);
+app.use("/auth", authRouter);
+app.use("/habits", habitRouter);
 
 app.use((err, _, res, __) => {
     console.error(err);
