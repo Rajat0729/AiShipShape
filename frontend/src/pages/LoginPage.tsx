@@ -1,8 +1,8 @@
 // src/pages/LoginPage.tsx
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import "./LoginPage.css";
-import { API_BASE, saveToken } from "../utils/auth.js";
+import { API_BASE_URL } from "../services/api.js";
+import { saveToken } from "../utils/auth.js";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${API_BASE}/api/auth/login`, {
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -94,7 +94,7 @@ export default function LoginPage() {
 
           {error && <div style={{ color: "salmon", marginBottom: 8 }}>{error}</div>}
 
-          <button type="submit" className="login-btn" disabled={loading}>
+          <button type="submit" className="w-full bg-(--accent) py-3 rounded-md mt-5 text-base font-semibold hover:bg-[#18a84c]" disabled={loading}>
             {loading ? "Signing in..." : "Sign In"}
           </button>
 

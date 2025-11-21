@@ -1,8 +1,7 @@
 // SignupPage.tsx
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import "./LoginPage.css"; // reuse same styles for consistency
-import { API_BASE } from "../utils/auth.js";
+import { API_BASE_URL } from "../services/api.js";
 
 export default function SignupPage() {
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ export default function SignupPage() {
 
     setLoading(true);
     try {
-      const res = await fetch(`${API_BASE}/api/auth/register`, {
+      const res = await fetch(`${API_BASE_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -48,45 +47,45 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="login-container">
-      <div className="left-panel">
-        <img src="/graphimage.png" alt="Graph" className="graph-img" />
-        <h1 className="title">HabitFlow:</h1>
-        <h1 className="subtitle">
+    <div className="flex h-screen w-full bg-(--bg)">
+      <div className="w-1/2 p-16 flex flex-col justify-center">
+        <img src="/graphimage.png" alt="Graph" className="w-[320px] mb-8 opacity-90" />
+        <h1 className="text-[42px] font-semibold">HabitFlow:</h1>
+        <h1 className="text-[36px] font-bold mt-2">
           Master your days,
           <br /> visualize your success.
         </h1>
-        <p className="tagline">A professional habit tracker built for consistency.</p>
+        <p className="mt-5 text-[#aaaaaa] text-sm">A professional habit tracker built for consistency.</p>
       </div>
 
-      <div className="right-panel">
-        <form className="login-card" onSubmit={handleSubmit}>
-          <h2 className="card-title">Create account</h2>
+      <div className="w-1/2 flex justify-center items-center">
+        <form className="bg-[#1c1f25] p-9 w-[350px] rounded-xl shadow-[0_2px_15px_rgba(0,0,0,0.4)]" onSubmit={handleSubmit}>
+          <h2 className="text-[24px] mb-5">Create account</h2>
 
-          <label className="label">Email Address</label>
+          <label className="text-sm block mt-2">Email Address</label>
           <input
             type="email"
-            className="input-box"
+            className="w-full p-2.5 mt-1 rounded-md border border-[#333] bg-[#0f1115] text-white"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             autoComplete="email"
           />
 
-          <label className="label">Password</label>
+          <label className="text-sm block mt-2">Password</label>
           <input
             type="password"
-            className="input-box"
+            className="w-full p-2.5 mt-1 rounded-md border border-[#333] bg-[#0f1115] text-white"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             autoComplete="new-password"
           />
 
-          <label className="label">Confirm Password</label>
+          <label className="text-sm block mt-2">Confirm Password</label>
           <input
             type="password"
-            className="input-box"
+            className="w-full p-2.5 mt-1 rounded-md border border-[#333] bg-[#0f1115] text-white"
             value={confirm}
             onChange={(e) => setConfirm(e.target.value)}
             required
@@ -96,12 +95,12 @@ export default function SignupPage() {
           {error && <div style={{ color: "salmon", marginBottom: 8 }}>{error}</div>}
           {success && <div style={{ color: "lightgreen", marginBottom: 8 }}>{success}</div>}
 
-          <button type="submit" className="login-btn" disabled={loading}>
+          <button type="submit" className="w-full bg-(--accent) py-3 rounded-md mt-5 text-base font-semibold hover:bg-[#18a84c]" disabled={loading}>
             {loading ? "Creating..." : "Create account"}
           </button>
 
-          <p className="register-text">
-            Already have an account? <Link to="/login">Sign in</Link>
+          <p className="text-center mt-5 text-[#cccccc]">
+            Already have an account? <Link className="text-(--accent) no-underline" to="/login">Sign in</Link>
           </p>
         </form>
       </div>
