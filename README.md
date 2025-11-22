@@ -49,7 +49,7 @@ Users can create habits, mark them daily, and view progress through a clean heat
 
 ```bash
 https://github.com/Rajat0729/AiShipShape.git
-cd habit-tracker-mern
+cd AiShipShape
 ```
 
 ---
@@ -117,7 +117,7 @@ npm run dev
 ## **👨‍💻 Author**
 
 **Rajat Paliwal**
-Email: [rajatpaliwal@jklu.edu.in](mailto:rajatpaliwal@jklu.edu.in)
+
 
 ---
 
