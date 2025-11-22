@@ -19,11 +19,12 @@ export async function fetchWithAuth(url: string, options: RequestInit = {}) {
     headers.set("Authorization", `Bearer ${token}`);
   }
 
-  return fetch(url, {
+  return fetch(API_BASE_URL + url, {
     ...options,
     headers,
   });
 }
+
 
 /**
  * ✔ request()
