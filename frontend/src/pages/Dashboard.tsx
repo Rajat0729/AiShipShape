@@ -8,11 +8,7 @@ import HeaderControls from "../components/HeaderControls.js";
 import CreateHabitModal from "../components/CreateHabitModal.js";
 import HabitCard from "../components/HabitCard.js";
 
-/**
- * Dashboard (refactored)
- * - small page file that orchestrates subcomponents
- * - keeps API and local fallback logic intact
- */
+
 
 const STORAGE_KEY = "habitflow_habits_v2";
 
@@ -27,7 +23,7 @@ export default function Dashboard() {
   const isMobile = width < 720;
   const isTablet = width >= 720 && width < 1024;
 
-  // controls
+  
   const [viewDaysMode, setViewDaysMode] = useState<"weekly" | "monthly">("weekly");
   const [viewDays, setViewDays] = useState<number>(7);
   const [sortMode, setSortMode] = useState<"name" | "current" | "longest">("name");
@@ -82,7 +78,7 @@ export default function Dashboard() {
   }
 
   async function handleCreate(payload: { name: string; frequency: Habit["frequency"]; timesPerDay: number; description: string }) {
-    // call API then reload or fallback to optimistic
+    
     try {
       const res = await fetchWithAuth(`${API_BASE_URL}/habits`, {
         method: "POST",
@@ -95,7 +91,7 @@ export default function Dashboard() {
         return;
       }
     } catch {
-      // optimistic fallback
+      
       const newHabit: Habit = {
         id: Date.now().toString(),
         name: payload.name,
@@ -115,7 +111,7 @@ export default function Dashboard() {
   async function toggleToday(id: string) {
   let updatedFromServer = false;
 
-  // 1. Try server update FIRST
+  
   const res = await fetchWithAuth(`${API_BASE_URL}/habits/${id}/complete`, {
     method: "POST",
   });
@@ -130,16 +126,16 @@ export default function Dashboard() {
   }
   if (updatedFromServer) return;
 
-  // 2. Local fallback (ALWAYS works)
+ 
   setHabits((prev) =>
     prev.map((h) => {
       if (h.id !== id) return h;
 
-      // Fix: ensure recent always has 28 entries
+      
       const recent = [...(h.recent ?? Array(28).fill(0))];
       while (recent.length < 28) recent.push(0);
 
-      // Toggle today
+      
       if (recent.length > 0) {
         recent[0] = (recent[0] ?? 0) > 0 ? 0 : 1;
       }
@@ -192,7 +188,7 @@ export default function Dashboard() {
     return list;
   }, [habits, search, frequencyFilter, sortMode]);
 
-  // styling tokens (kept small)
+  
   const base = {
     pageBg: "#0b0d0f",
     text: "#e8eef0",

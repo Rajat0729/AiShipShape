@@ -7,7 +7,7 @@ export type Habit = {
   createdAt: string;
   timesPerDay: number;
   frequency: Frequency;
-  recent: number[]; // index 0 = today, 1 = yesterday, ...
+  recent: number[]; 
   currentStreak?: number;
   longestStreak?: number;
 };

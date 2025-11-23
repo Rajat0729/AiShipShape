@@ -67,7 +67,7 @@ export default function SignupPage() {
         color: "white",
       }}
     >
-      {/* LEFT SIDE — Branding */}
+      {}
       <div
         style={{
           width: isMobile ? "100%" : "50%",
@@ -122,7 +122,7 @@ export default function SignupPage() {
         </p>
       </div>
 
-      {/* RIGHT SIDE — Registration Form */}
+      {}
       <div
         style={{
           width: isMobile ? "100%" : "50%",
@@ -152,7 +152,7 @@ export default function SignupPage() {
             Create account
           </h2>
 
-          {/* EMAIL */}
+          {}
           <label style={{ fontSize: "14px" }}>Email Address</label>
           <input
             type="email"
@@ -173,7 +173,7 @@ export default function SignupPage() {
             }}
           />
 
-          {/* PASSWORD */}
+          {}
           <label style={{ fontSize: "14px" }}>Password</label>
           <input
             type="password"
@@ -194,7 +194,7 @@ export default function SignupPage() {
             }}
           />
 
-          {/* CONFIRM PASSWORD */}
+          {}
           <label style={{ fontSize: "14px" }}>Confirm Password</label>
           <input
             type="password"
@@ -215,7 +215,7 @@ export default function SignupPage() {
             }}
           />
 
-          {/* STATUS MESSAGES */}
+          {}
           {error && (
             <div style={{ color: "salmon", marginBottom: "10px" }}>{error}</div>
           )}
@@ -225,7 +225,7 @@ export default function SignupPage() {
             </div>
           )}
 
-          {/* SUBMIT */}
+          {}
           <button
             type="submit"
             disabled={loading}
@@ -252,7 +252,7 @@ export default function SignupPage() {
             {loading ? "Creating..." : "Create account"}
           </button>
 
-          {/* FOOTER */}
+          {}
           <p
             style={{
               textAlign: "center",

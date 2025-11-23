@@ -27,7 +27,7 @@ export default function HabitCard({ h, isMobile, viewDaysMode, viewDays, onToggl
 
   return (
     <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: 12, alignItems: "center", padding: 12, borderRadius: 12, background: "rgba(255,255,255,0.02)", width: "100%", boxSizing: "border-box" }}>
-      {/* Left info */}
+      {}
       <div style={{ width: isMobile ? "100%" : 260, flexShrink: 0 }}>
         <div style={{ fontSize: 18, fontWeight: 700, wordBreak: "break-word" }}>{h.name}</div>
         <div style={{ marginTop: 6, color: "#9fb3b7", fontSize: 13 }}>
@@ -38,7 +38,7 @@ export default function HabitCard({ h, isMobile, viewDaysMode, viewDays, onToggl
           Current streak: {h.currentStreak ?? calcCurrentStreak(h.recent)} 🔥
         </div>
 
-        {/* NEW: progress percentages */}
+        {}
         <div style={{ marginTop: 6, color: "#9fb3b7", fontSize: 13 }}>
           Progress — Today: <strong style={{ color: "#e8eef0" }}>{todayPct}%</strong> · Weekly: <strong style={{ color: "#e8eef0" }}>{weeklyPct}%</strong> · Month: <strong style={{ color: "#e8eef0" }}>{monthlyPct}%</strong>
         </div>
@@ -48,7 +48,7 @@ export default function HabitCard({ h, isMobile, viewDaysMode, viewDays, onToggl
         ) : null}
       </div>
 
-      {/* heatmap & mini bars */}
+      {}
       <div style={{ flex: 1, display: "flex", alignItems: isMobile ? "stretch" : "center", gap: 12, flexDirection: isMobile ? "column" : "row", boxSizing: "border-box" }}>
         {viewDaysMode === "weekly" ? (
           <div style={{ display: "flex", gap: 8, overflowX: isMobile ? "auto" : "visible", paddingBottom: isMobile ? 6 : 0, alignItems: "center", width: isMobile ? "100%" : "auto" }}>
@@ -80,7 +80,7 @@ export default function HabitCard({ h, isMobile, viewDaysMode, viewDays, onToggl
         </div>
       </div>
 
-      {/* actions */}
+      {}
       <div style={{ display: "flex", gap: 8, marginLeft: isMobile ? 0 : "auto", width: isMobile ? "100%" : "auto", boxSizing: "border-box" }}>
         <button onClick={() => onToggleToday(h.id)} style={{ padding: "8px 10px", borderRadius: 8, background: "rgba(255,255,255,0.03)", color: "#e8eef0", border: "none", flex: isMobile ? 1 : undefined, minWidth: 0 }}>
           {(h.recent?.[0] ?? 0) > 0 ? "Undo Today" : "Mark Today"}

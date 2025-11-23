@@ -66,7 +66,7 @@ export default function LoginPage() {
         color: "white",
       }}
     >
-      {/* LEFT SIDE — Graphic Section */}
+      {}
       <div
         style={{
           width: isMobile ? "100%" : "50%",
@@ -121,7 +121,7 @@ export default function LoginPage() {
         </p>
       </div>
 
-      {/* RIGHT SIDE — Login Form */}
+      {}
       <div
         style={{
           width: isMobile ? "100%" : "50%",
@@ -151,7 +151,7 @@ export default function LoginPage() {
             Sign In
           </h2>
 
-          {/* EMAIL */}
+          {}
           <label style={{ fontSize: "14px" }}>Email Address</label>
           <input
             type="email"
@@ -172,7 +172,7 @@ export default function LoginPage() {
             }}
           />
 
-          {/* PASSWORD */}
+          {}
           <label style={{ fontSize: "14px" }}>Password</label>
           <input
             type="password"
@@ -219,7 +219,7 @@ export default function LoginPage() {
             </div>
           )}
 
-          {/* SUBMIT BUTTON */}
+          {}
           <button
             type="submit"
             disabled={loading}
@@ -242,7 +242,7 @@ export default function LoginPage() {
             {loading ? "Signing in..." : "Sign In"}
           </button>
 
-          {/* FOOTER */}
+          {}
           <p
             style={{
               textAlign: "center",

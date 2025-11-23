@@ -1,16 +1,6 @@
 import { type Habit } from "../types/habit.js";
 
-/**
- * Utility functions for habits:
- * - normalization from server
- * - streak calculations
- * - month builder
- * - mini bars
- * - color mapping
- * - progress calculations
- */
 
-// small date helpers
 export function daysInMonth(year: number, month0: number) {
   return new Date(year, month0 + 1, 0).getDate();
 }
@@ -30,7 +20,7 @@ export function dateDiffDays(a: Date, b: Date) {
   return diff;
 }
 
-// Normalizer - ensures fields exist locally
+
 export function normalizeServerHabit(raw: any): Habit {
   const id = raw.id ?? raw._id ?? String(Date.now());
   const recent = Array.isArray(raw.recent) ? raw.recent.map((v: any) => Number(v) || 0) : Array(28).fill(0);
@@ -47,7 +37,7 @@ export function normalizeServerHabit(raw: any): Habit {
   };
 }
 
-// streaks
+
 export function calcCurrentStreak(recent: number[]) {
   let cnt = 0;
   for (let i = 0; i < recent.length; i++) {
@@ -71,7 +61,7 @@ export function calcLongestStreak(recent: number[]) {
   return max;
 }
 
-// build month view for a habit
+
 export function buildMonthDataForHabit(h: Habit, year: number, month0: number) {
   const days = daysInMonth(year, month0);
   const today = new Date();
@@ -103,7 +93,7 @@ export function buildMonthDataForHabit(h: Habit, year: number, month0: number) {
   return arr;
 }
 
-// color mapping based on ratio
+
 export function colorForRatio(ratio: number) {
   if (ratio <= 0) return "#1a1d21";
   if (ratio < 0.5) return "#a7f3d0";
@@ -112,7 +102,7 @@ export function colorForRatio(ratio: number) {
   return "#0b6b36";
 }
 
-// mini-bars: 4 week buckets -> percentage done
+
 export function miniBarData(h: Habit) {
   const now = new Date();
   const year = now.getFullYear();
@@ -134,12 +124,7 @@ export function miniBarData(h: Habit) {
   return weeks;
 }
 
-/* ----------------------------
-   Progress calculations
-   - todayPct: (todayCount / timesPerDay) * 100 (clamped to 200% cap like ratio)
-   - weeklyPct: average of daily (count/timesPerDay) across last 7 days
-   - monthlyAvgPct: average across current month days (active days)
----------------------------- */
+
 
 export function progressTodayPercent(h: Habit) {
   const today = (h.recent?.[0] ?? 0);
@@ -156,7 +141,7 @@ export function weeklyProgressPercent(h: Habit) {
 }
 
 export function monthlyProgressPercent(h: Habit) {
-  // compute percent for current month using buildMonthDataForHabit
+ 
   const now = new Date();
   const monthData = buildMonthDataForHabit(h, now.getFullYear(), now.getMonth());
   if (!monthData.length) return 0;
