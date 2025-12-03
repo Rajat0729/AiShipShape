@@ -3,10 +3,6 @@
 
 # **📘 README — Habit Tracker (MERN)**
 
-## **🚀 Live Demo**
-
-* **Frontend (Vercel):** [https://ai-ship-shape.vercel.app/](https://ai-ship-shape.vercel.app/)
-* **Backend (Render):** [https://aishipshape.onrender.com/](https://aishipshape.onrender.com/)
 
 ## **📂 Project Overview**
 
